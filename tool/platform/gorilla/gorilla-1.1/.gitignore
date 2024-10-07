@@ -1,0 +1,41 @@
+build
+dist
+*.egg-info
+**/__pycache__/
+*.log
+**/*.lic
+.vscode
+.idea
+.env
+.editorconfig
+.DS_Store
+**/*.pyc
+goex/exec_engine/checkpoints/
+goex/exec_engine/credentials/*
+!goex/exec_engine/credentials/credentials_utils.py
+!goex/exec_engine/credentials/supported.txt
+goex/docker/*/requirements.txt
+goex/docker/misc/images.json
+
+################## Berkley Function Call Leaderboard ##########################
+
+# Ignore API keys
+berkeley-function-call-leaderboard/function_credential_config.json
+
+# Ignore tree-sitter
+berkeley-function-call-leaderboard/eval_checker/tree-sitter-java
+berkeley-function-call-leaderboard/eval_checker/tree-sitter-javascript
+berkeley-function-call-leaderboard/tree-sitter-java
+berkeley-function-call-leaderboard/tree-sitter-javascript
+
+# Ignore aggregated eval data (used for OSS models)
+berkeley-function-call-leaderboard/eval_data_total.json
+
+# Ignore inference results
+berkeley-function-call-leaderboard/result/
+
+# Ignore leaderboard score
+berkeley-function-call-leaderboard/score/
+
+.direnv/
+.venv

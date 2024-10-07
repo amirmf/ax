@@ -1,0 +1,180 @@
+---
+#  Install Dkron beta on a clean instance
+
+- hosts: localhost
+  tasks:
+    - equinix.metal.device:
+        hostnames: [dkron01, dkron02, dkron03]
+        operating_system: ubuntu_22_04
+        plan: c3.small.x86
+        facility: am6
+        wait_for_public_IPv: 4
+        project_id: 904af849-79ff-4847-90f7-dfa02367ae72
+        tags:
+          - server
+      register: newhosts
+    
+    - equinix.metal.device:
+        hostnames: [dkron04]
+        operating_system: ubuntu_22_04
+        plan: c3.small.x86
+        facility: am6
+        wait_for_public_IPv: 4
+        project_id: 904af849-79ff-4847-90f7-dfa02367ae72
+        tags:
+          - agent
+      register: newhosts
+    
+    - debug: var=newhosts
+
+    - name: wait for ssh
+      wait_for:
+        delay: 1
+        host: "{{ item.public_ipv4 }}"
+        port: 22
+        state: started
+        timeout: 500
+      loop: "{{ newhosts.devices }}"
+
+- hosts: equinix_metal
+  user: root
+  become: true
+  become_method: sudo
+
+  vars:
+    version: 3.2.2
+    datadog_api_key: "{{ lookup('ansible.builtin.env', 'DKRON_DD_API_KEY') }}"
+    datadog_checks:
+      openmetrics:
+        init_config:
+        instances:
+          - openmetrics_endpoint: http://localhost:8080/metrics/
+            namespace: "dkron"
+            metrics:
+              - dkron.*
+
+  roles:
+    - role: datadog.datadog
+      become: yes
+      tags: datadog
+
+  tasks:
+    - name: Copy package
+      copy:
+        src: ../../dist/dkron_{{ version }}_linux_amd64.deb
+        dest: /tmp
+    
+    - name: Install package
+      apt:
+        deb: /tmp/dkron_{{ version }}_linux_amd64.deb
+
+    - name: ensure data dir
+      file:
+        path: /var/lib/dkron
+        owner: root
+        group: root
+        mode: 755
+        state: directory
+    
+    ### File descriptor and memory tweaks
+
+    - name: Increase sysctl open files system wide
+      sysctl:
+        name: fs.file-max
+        value: "3243542"
+      tags: performance
+
+    - name: Increasing number of open files
+      lineinfile: dest=/etc/systemd/system.conf regexp='^DefaultLimitNOFILE=65535' line='DefaultLimitNOFILE=65535' state=present
+      tags: performance
+    
+    - name: Increasing number of open files in service
+      lineinfile: dest=/lib/systemd/system/dkron.service regexp='^KillSignal=SIGTERM\n^LimitNOFILE=65535' line='LimitNOFILE=65535' state=present
+      tags: performance_b
+    
+    ### Network performance tweaks
+
+    - name: Set ARP GC entry point at 0
+      sysctl:
+        name: net.ipv4.neigh.default.gc_thresh1
+        value: "0"
+      tags: performance
+
+    - name: Increase maximum number of sockets
+      sysctl:
+        name: net.core.somaxconn
+        value: "32768"
+      tags: performance
+
+    - name: Increase maximum number of sockets in the backlog
+      sysctl:
+        name: net.ipv4.tcp_max_syn_backlog
+        value: "131072"
+      tags: performance
+
+    - name: Setting sane defaults for TCP reading sockets
+      sysctl:
+        name: net.ipv4.tcp_rmem
+        value: "4096 16384 16777216"
+      tags: performance
+
+    - name: Setting sane defaults for TCP writing sockets
+      sysctl:
+        name: net.ipv4.tcp_wmem
+        value: "4096 16384 16777216"
+      tags: performance
+
+- hosts: tag_server
+  user: root
+  become: true
+  become_method: sudo
+
+  vars:
+    version: 3.2.0
+    dkron_log_level: debug
+    dkron_bootstrap_expect: 3
+    dkron_data_dir: /var/lib/dkron
+    dkron_server: "true"
+
+  tasks:
+    - set_fact:
+        dkron_servers: "{{ groups['tag_server'] | map('extract', hostvars, ['ansible_all_ipv4_addresses', 1]) | list }}"
+      tags: config
+
+    - name: configure
+      template: src={{ item }}.yml.j2 dest=/etc/dkron/{{ item }}.yml
+      loop:
+        - dkron
+      tags: config
+
+    - name: ensure service is running and enabled
+      systemd:
+        name: dkron
+        enabled: yes
+        state: restarted
+
+- hosts: tag_agent
+  user: root
+  become: true
+  become_method: sudo
+
+  vars:
+    version: 3.2.0
+    dkron_log_level: debug
+    dkron_data_dir: /var/lib/dkron
+    dkron_server: "false"
+    dkron_servers: "{{ hostvars['dkron01']['dkron_servers'] }}"
+    dkron_bootstrap_expect: 3
+
+  tasks:
+    - name: configure
+      template: src={{ item }}.yml.j2 dest=/etc/dkron/{{ item }}.yml
+      loop:
+        - dkron
+      tags: config
+
+    - name: ensure service is running and enabled
+      systemd:
+        name: dkron
+        enabled: yes
+        state: restarted

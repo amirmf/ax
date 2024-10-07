@@ -1,0 +1,42 @@
+site/
+/public
+/website/public
+docs/scss/Gemfile.lock
+docs/scss/.sass-cache
+downloads/
+.goxc.local.json
+.envrc
+.vagrant
+vendor/
+main
+/dkron-processor-*
+/dkron-executor-*
+*.log
+config/
+dist
+node_modules
+*.db
+*.data
+*.retry
+.DS_Store
+.vscode
+tags
+.sass-cache
+.idea/
+
+# Production
+build
+
+# Generated files
+.docusaurus
+.cache-loader
+
+# Misc
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
