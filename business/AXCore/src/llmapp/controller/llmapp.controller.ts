@@ -1,9 +1,9 @@
 import { Controller } from '@nestjs/common';
 import { ControllerFactory } from 'src/generic/controller/base.crud.controller';
-import { About } from './about.entity';
-import { AboutService as AboutService } from './about.service';
-import { AboutOneDto } from './dto/about.one.dto';
-import { AboutMapper as AboutMapper } from './about.mapper';
+import { LLMApp } from '../entity/llmapp.entity';
+import { LLMAppService as LLMAppService } from '../service/llmapp.service';
+import { LLMAppOneDto } from '../dto/llmapp.one.dto';
+import { LLMAppMapper as LLMAppMapper } from '../mapper/llmapp.mapper';
 import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BaseQueryDto } from 'src/generic/dto/base.query.dto';
 import {
@@ -22,17 +22,17 @@ import {
 } from '@nestjs/common';
 import { IsNumber } from 'class-validator';
 
-@ApiTags('About')
+@ApiTags('LLMApp')
 @ApiBearerAuth('accessToken')
-@Controller('/about')
-export class AboutController extends ControllerFactory<
-  About,
-  AboutOneDto,
+@Controller('/llmapp')
+export class LLMAppController extends ControllerFactory<
+  LLMApp,
+  LLMAppOneDto,
   BaseQueryDto
->(AboutOneDto, BaseQueryDto) {
+>(LLMAppOneDto, BaseQueryDto) {
   constructor(
-    protected CRUDService: AboutService,
-    protected mapper: AboutMapper,
+    protected CRUDService: LLMAppService,
+    protected mapper: LLMAppMapper,
   ) {
     super(CRUDService, mapper);
   }

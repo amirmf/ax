@@ -36,14 +36,14 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  const routerGlobalPrefix = '/business-book/api';
+  const routerGlobalPrefix = '/axcore/api';
   const apiDocPath = `${routerGlobalPrefix}-docs`;
   app.setGlobalPrefix(routerGlobalPrefix);
 
   // Swagger setup
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('business-book core API')
-    .setDescription('business-book core API')
+    .setTitle('AXCore API')
+    .setDescription('AXCore API')
     .setVersion('1.0')
     .addBearerAuth(
       {
@@ -77,7 +77,7 @@ async function bootstrap() {
   const host = process.env.HOST || '0.0.0.0';
   const port = process.env.PORT || 2425;
   await app.listen(port, host);
-  console.log(`[business-book (core)] Server running on ${await app.getUrl()}`);
+  console.log(`[AXCore] Server running on ${await app.getUrl()}`);
 }
 bootstrap();
 

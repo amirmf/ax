@@ -2,13 +2,14 @@ import { BaseRepo } from 'src/generic/repo/base.repo';
 import { Repository } from 'typeorm';
 import { IBaseRepo } from 'src/generic/repo/base.repo.interface';
 import { InjectRepository } from '@nestjs/typeorm';
-import { About } from './about.entity';
+import { LLMApp } from '../entity/llmapp.entity';
 import { Injectable } from '@nestjs/common';
+import { Execution } from '../entity/execution.entity';
 
 @Injectable()
-export class AboutRepo extends BaseRepo<About> implements IBaseRepo<About> {
+export class ExecutionRepo extends BaseRepo<Execution> implements IBaseRepo<Execution> {
   constructor(
-    @InjectRepository(About) private readonly repo: Repository<About>,
+    @InjectRepository(Execution) private readonly repo: Repository<Execution>,
   ) {
     super(repo);
   }

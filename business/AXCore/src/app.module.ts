@@ -9,39 +9,13 @@ import {
   I18nModule,
 } from 'nestjs-i18n';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { BusinessModule } from './business/business.module';
-import { CustomerModule } from './customer/customer.module';
-import { AudienceModule } from './audience/audience.module';
-import { CompetitorModule } from './competitor/competitor.module';
-import { LeadModule } from './lead/lead.module';
-import { AboutModule } from './about/about.module';
-import { KeywordModule } from './keyword/keyword.module';
-import { MediaModule } from './media/media.module';
-import { PortfolioModule } from './portfolio/portfolio.module';
-import { PostModule } from './post/post.module';
-import { NewsModule } from './news/news.module';
-import { PartyModule } from './party/party.module';
-import { ContentModule } from './content/content.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { AuthModule } from './auth/auth.module';
 import { BaseModule } from './base/base.module';
 
 @Module({
   imports: [
-    AboutModule,
-    AudienceModule,
     AuthModule,
-    BusinessModule,
-    CompetitorModule,
-    ContentModule,
-    CustomerModule,
-    KeywordModule,
-    LeadModule,
-    MediaModule,
-    NewsModule,
-    PartyModule,
-    PortfolioModule,
-    PostModule,
 
     BaseModule,
 
@@ -58,7 +32,7 @@ import { BaseModule } from './base/base.module';
       useFactory: () => {
         return {
           type: 'postgres',
-          url: 'postgresql://postgres:postgres@127.0.0.1:5432/business-book-core',
+          url: 'postgresql://postgres:postgres@127.0.0.1:5432/axcore',
           synchronize: true,
           host: 'localhost',
           autoLoadEntities: true,

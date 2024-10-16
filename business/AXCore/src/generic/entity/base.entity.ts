@@ -11,7 +11,7 @@ export abstract class AbstractEntity {
   @PrimaryGeneratedColumn({ name: 'id' })
   id: number;
 
-  @Column({ length: 256, default: 'arisha' }) // uuid from security app
+  @Column({ length: 256, default: 'dev' }) // id from security app
   tenantId: string;
 
   @Column({ nullable: true }) // todo: in future change to relation user
