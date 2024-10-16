@@ -1,0 +1,34 @@
+{
+  "name": "axstudio",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "format": "prettier --write \"{app,demo,layout,types}/**/*.{js,ts,tsx,d.ts}\"",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "chart.js": "4.2.1",
+    "next": "14.2.15",
+    "primeflex": "^3.3.1",
+    "primeicons": "7.0.0",
+    "primereact": "10.8.4",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "swr": "^2.2.5",
+    "typescript": "5.1.3"
+  },
+  "devDependencies": {
+    "@types/node": "22.7.5",
+    "@typescript-eslint/eslint-plugin": "5.62.0",
+    "@typescript-eslint/parser": "5.62.0",
+    "eslint": "8.43.0",
+    "eslint-config-next": "14.2.1",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-prettier": "5.1.3",
+    "prettier": "3.2.5",
+    "sass": "^1.63.4"
+  }
+}

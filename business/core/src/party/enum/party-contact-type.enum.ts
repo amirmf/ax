@@ -1,0 +1,14 @@
+export enum PartyContactTypeEnum {
+  PHONE = 'PHONE',
+  MOBILE = 'MOBILE',
+  EMAIL = 'EMAIL',
+  ADDR = 'ADDR',
+  SITE = 'SITE',
+  LOCATION = 'LOCATION',
+  INSTAGRAM = 'INSTAGRAM',
+  WA = 'WA',
+  TELEGRAM = 'TELEGRAM',
+  LINKEDIN = 'LINKEDIN',
+  TOROB = 'TOROB',
+  DIGIKALA = 'DIGIKALA',
+}

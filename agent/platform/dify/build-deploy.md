@@ -40,7 +40,7 @@ You should us docker compose but after running it you should remove bellow conta
     SERVICE_API_URL=https://axagent.api.automatx.ai
     APP_API_URL=https://axagent.api.app.automatx.ai
     APP_WEB_URL=https://axagent.app.automatx.ai
-    SECRET_KEY=XXX
+    SECRET_KEY=12345678901234567890123456789012
     DEPLOY_ENV=PRODUCTION
     DIFY_BIND_ADDRESS=0.0.0.0
     DIFY_PORT=80
