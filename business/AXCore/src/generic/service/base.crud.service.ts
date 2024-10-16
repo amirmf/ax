@@ -29,7 +29,7 @@ export abstract class BaseCRUDService<
   }
 
   public async saveMany(data: DeepPartial<E>[]): Promise<E[]> {
-    return this.baseRepo.saveMany(data);
+    return await this.baseRepo.saveMany(data);
   }
 
   public async create(data: DeepPartial<E>): Promise<E> {
@@ -45,7 +45,7 @@ export abstract class BaseCRUDService<
   }
 
   public async findOne(options: FindOneOptions<E>): Promise<E> {
-    return this.baseRepo.findOne(options);
+    return await this.baseRepo.findOne(options);
   }
 
   public async findAll(

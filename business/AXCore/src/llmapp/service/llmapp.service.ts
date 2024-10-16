@@ -4,6 +4,7 @@ import { LLMApp } from '../entity/llmapp.entity';
 import { LLMAppRepo as LLMAppRepo } from '../repo/llmapp.repo';
 import { Injectable } from '@nestjs/common';
 import { BaseQueryDto } from 'src/generic/dto/base.query.dto';
+import { DeepPartial } from 'typeorm';
 
 @Injectable()
 export class LLMAppService
@@ -12,5 +13,10 @@ export class LLMAppService
 {
   constructor(private readonly repo: LLMAppRepo) {
     super(repo);
+  }
+
+  public create(data: DeepPartial<LLMApp>): Promise<LLMApp> {
+      // TODO: connect to provider and add there too
+      return null;
   }
 }

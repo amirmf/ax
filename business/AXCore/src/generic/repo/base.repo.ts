@@ -21,7 +21,7 @@ export abstract class BaseRepo<E extends AbstractEntity>
 
   public async saveMany(data: DeepPartial<E>[]): Promise<E[]> {
     // TODO: throw error if data not exists
-    return this.baseRepo.save(data);
+    return await this.baseRepo.save(data);
   }
 
   public async create(data: DeepPartial<E>): Promise<E> {
