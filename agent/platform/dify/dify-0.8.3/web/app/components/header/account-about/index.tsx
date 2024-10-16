@@ -39,11 +39,11 @@ export default function AccountAbout({
           <LogoSite className='mx-auto mb-2' />
           <div className='mb-3 text-center text-xs font-normal text-gray-500'>Version {langeniusVersionInfo?.current_version}</div>
           <div className='mb-4 text-center text-xs font-normal text-gray-700'>
-            <div>© {dayjs().year()} LangGenius, Inc., Contributors.</div>
+            <div>© {dayjs().year()} AutomatX, Inc., Contributors.</div>
             <div className='text-[#1C64F2]'>
               {
                 IS_CE_EDITION
-                  ? <Link href={'https://#'} target='_blank' rel='noopener noreferrer'>Open Source License</Link>
+                  ? <Link href={'https://#'} target='_blank' rel='noopener noreferrer'>AutomatX License</Link>
                   : <>
                     <Link href='https://automatx.ai/privacy' target='_blank' rel='noopener noreferrer'>Privacy Policy</Link>,<span> </span>
                     <Link href='https://automatx.ai/terms' target='_blank' rel='noopener noreferrer'>Terms of Service</Link>

@@ -11,5 +11,5 @@ cp ../brand/AXLogo.png agent/platform/dify/dify-0.8.3/web/public/logo/logo-embed
 
 
 2) Replace Dify with AXAgent:
-- Replace all 'dify.ai' with 'automatx.ai' in 'dify-0.8.3/web/app'
+- Replace all 'dify.ai' & 'LangGenius' with 'automatx.ai' in 'dify-0.8.3/web/app'
 - Search for 'dify' word in 'dify-0.8.3/web/app' directory and replace anything and also remove links to dify related pages
