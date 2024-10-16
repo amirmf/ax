@@ -1,8 +1,0 @@
-export enum PartyMediaTypeEnum {
-  LOGO = 'LOGO',
-  LOGO_WHITE = 'LOGO_WHITE',
-  LOGO_BLACK = 'LOGO_BLACK',
-  GALLERY = 'GALLERY',
-  AVATAR = 'AVATAR',
-  HEADER_POSTER = 'HEADER_POSTER',
-}

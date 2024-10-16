@@ -1,7 +1,7 @@
 {
-  "name": "business-book-core",
+  "name": "axcore",
   "version": "0.0.1",
-  "description": "platform for Start, manage and develop digital business",
+  "description": "core module for AX ecosystem",
   "author": "Amir Mansouri Fard (amf.fard@gmail.com)",
   "private": true,
   "license": "Amir Private License, All Copy rights reserved",

@@ -1,6 +1,5 @@
 
-# business-book
-## Install & Run all modules of business-book including core, admin-ui, sire-core, site-ui
+# AXCore
 using NestJs and TypeOrm
 
 ---

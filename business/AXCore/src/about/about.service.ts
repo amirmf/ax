@@ -1,6 +1,5 @@
 import { BaseCRUDService } from 'src/generic/service/base.crud.service';
 import { IBaseCRUDService } from 'src/generic/service/base.crud.service.interface';
-import { About } from './about.entity';
 import { AboutRepo as AboutRepo } from './about.repo';
 import { Injectable } from '@nestjs/common';
 import { BaseQueryDto } from 'src/generic/dto/base.query.dto';
