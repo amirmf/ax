@@ -1,0 +1,3 @@
+import { BaseOneDto } from 'src/generic/dto/base.one.dto';
+
+export class PostOneDto extends BaseOneDto {}
