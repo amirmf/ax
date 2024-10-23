@@ -4,7 +4,7 @@ export function middleware(request: NextRequest) {
     // const token = localStorage.getItem('token');
     const token = request.headers.get('Authorization');
     // console.log(token+"tokentokentokentokentokentokentoken");
-    const isAuthenticated = true;
+    const isAuthenticated = !!token || true;
     
     if (isAuthenticated)
          return NextResponse.next()

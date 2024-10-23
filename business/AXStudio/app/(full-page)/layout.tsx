@@ -7,8 +7,8 @@ interface SimpleLayoutProps {
 }
 
 export const metadata: Metadata = {
-    title: 'Arisha Admin UI',
-    description: 'Arisha Platform.'
+    title: 'AXStudio',
+    description: 'AXStudio.'
 };
 
 export default function SimpleLayout({ children }: SimpleLayoutProps) {

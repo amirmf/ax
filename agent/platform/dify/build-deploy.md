@@ -16,7 +16,7 @@
 
 ### Build UI docker image:
 1) cd web
-2) docker build . -t dify-web
+2) docker build . -t dify-web:0.10.0
 
 
 ### Run UI:

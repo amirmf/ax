@@ -20,9 +20,26 @@ const Dashboard = () => {
             applyDarkTheme();
         }
     }, [layoutConfig.colorScheme]);
-
     return (
-       <iframe src="https://dify.ai"  width="100%" height="520px" frameBorder="0" seamless={true}></iframe>
+        <div style={{
+            position:'absolute',
+            top:'70px',
+            bottom:'10px',
+            right:'20px',
+            left:'20px',
+            overflow:'hidden'
+        }}>
+       <iframe src="https://axagent.automatx.ir/apps"  
+                frameBorder="0" 
+                seamless={true}
+                width="100%" 
+                 height="100%"
+                 scrolling='true'
+                style={{
+                    width:'100%',
+                  }}
+                ></iframe>
+        </div>
     );
 };
 

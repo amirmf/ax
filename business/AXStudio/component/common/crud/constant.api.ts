@@ -1,5 +1,5 @@
 const SDK_CONSTANT = {
-    CORE_API_URL:'http://localhost:2425/business-book/api/',
+    CORE_API_URL:'http://localhost:2425/axcore/api/',
     CORE_API_CREATE_PATH:'',
     CORE_API_UPDATE_PATH:'',
     CORE_API_LIST_PATH:'/find',
